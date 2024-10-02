@@ -47,10 +47,10 @@ if submit:
 
     url_check=screener_data.url_validation()
 
-    if url_check=="Valid NSE/BSE Symbol":
-        url=f"https://www.screener.in/company/{nse_bse_symbol}/"
+    if url_check!="Valid NSE/BSE Symbol":
+        url=url_check
 
-        screener_values=screener_data.Values_from_Screener(url=url)
+        screener_values=screener_data.Values_from_Screener(nse_bse_symbol)
 
         st.write(f"Stock Symbol: {nse_bse_symbol}")
 
@@ -60,7 +60,7 @@ if submit:
 
         st.write(f"5-yr median pre-tax RoCE :{screener_data.fiveyr_median_roce}%")
 
-        screener_plots=screener_data.Screener_table_and_plot(url=url)
+        screener_plots=screener_data.Screener_table_and_plot(nse_bse_symbol)
 
         st.table(screener_data.dataframe)
 
